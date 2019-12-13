@@ -1921,7 +1921,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  'name': 'Nav'
+  'name': 'Nav',
+  data: function data() {
+    return {
+      user: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/auth-user').then(function (response) {
+      _this.user = response.data;
+    })["catch"](function (error) {
+      console.log('Unable to fetch auth user.');
+    });
+  }
 });
 
 /***/ }),
@@ -19945,7 +19959,7 @@ var render = function() {
             {
               staticClass:
                 "px-6 h-full flex items-center border-b-2 border-white",
-              attrs: { to: "/" }
+              attrs: { to: "/users/" + _vm.user.data.user_id }
             },
             [
               _c("img", {
