@@ -23,7 +23,7 @@
                 posts: null,
                 loading: true,
             }
-        },   
+        },
         mounted(){
             axios.get('/api/posts')
                 .then(response => {
