@@ -13,8 +13,8 @@ const actions = {
     fetchAuthUser({commit, state}) {
         axios.get('/api/auth-user')
             .then(response => {
-                commit(setAuthUser, response.data);
-            })
+                commit('setAuthUser', response.data);
+            }) 
             .catch(error => {
                 console.log('Unable to fetch auth user.');
             });

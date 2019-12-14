@@ -1863,7 +1863,7 @@ __webpack_require__.r(__webpack_exports__);
     Sidebar: _Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    this.$store.dispatch(fetchAuthUser);
+    this.$store.dispatch('fetchAuthUser');
   },
   created: function created() {
     this.$store.dispatch('setPageTitle', this.$route.meta.title);
@@ -1941,7 +1941,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   'name': 'Nav',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["default"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     authUser: 'authUser'
   }))
 });
@@ -37105,7 +37105,7 @@ var actions = {
     var commit = _ref.commit,
         state = _ref.state;
     axios.get('/api/auth-user').then(function (response) {
-      commit(setAuthUser, response.data);
+      commit('setAuthUser', response.data);
     })["catch"](function (error) {
       console.log('Unable to fetch auth user.');
     });
