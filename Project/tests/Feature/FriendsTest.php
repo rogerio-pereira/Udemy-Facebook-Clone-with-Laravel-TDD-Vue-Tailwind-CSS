@@ -83,7 +83,6 @@ class FriendsTest extends TestCase
             'friend_id' => $anotherUser->id,
         ])->assertStatus(200);
 
-
         $response = $this->actingAs($anotherUser, 'api')
             ->post('/api/friendRequestResponse', [
                 'user_id' => $user->id,
@@ -165,5 +164,36 @@ class FriendsTest extends TestCase
                 'detail' => 'Unable to locate the friend request with the given information',
             ]
         ]);
+    }
+
+    /**
+     * @test
+     */
+    public function aFriendIdIsRequiredForFriendRequest()
+    {
+        $response = $this->actingAs($user = factory(User::class)->create(), 'api')
+            ->post('/api/friendRequest', [
+                'friend_id' => '',
+            ])->assertStatus(422);
+
+        $responseString = json_decode($response->getContent(), true);
+        $this->assertArrayHasKey('friend_id', $responseString['errors']['meta']);
+    }
+
+    /**
+     * @test
+     */
+    public function aUserIdAndStatusIsRequiredForFriendRequestResponses()
+    {
+        $response = $this->actingAs($user = factory(User::class)->create(), 'api')
+            ->post('/api/friendRequestResponse', [
+                'user_id' => '',
+                'status' => '',
+            ])
+            ->assertStatus(422);
+
+        $responseString = json_decode($response->getContent(), true);
+        $this->assertArrayHasKey('user_id', $responseString['errors']['meta']);
+        $this->assertArrayHasKey('status', $responseString['errors']['meta']);
     }
 }
