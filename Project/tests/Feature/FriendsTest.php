@@ -196,4 +196,70 @@ class FriendsTest extends TestCase
         $this->assertArrayHasKey('user_id', $responseString['errors']['meta']);
         $this->assertArrayHasKey('status', $responseString['errors']['meta']);
     }
+
+    /**
+     * @test
+     */
+    public function aFriendshipIsRetrievedWhenFetchingTheProfile()
+    {
+        $this->actingAs($user = factory(User::class)->create(), 'api');
+        $anotherUser = factory(User::class)->create();
+
+        $friendRequest = Friend::create([
+            'user_id' => $user->id,
+            'friend_id' => $anotherUser->id,
+            'confirmed_at' => now()->subDay(),
+            'status' => true
+        ]);
+
+        $this->get('/api/users/'.$anotherUser->id)
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'attributes' => [
+                        'friendship' => [
+                            'data' => [
+                                'friend_request_id' => $friendRequest->id,
+                                'attributes' => [
+                                    'confirmed_at' => '1 day ago',
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]);
+    }
+
+    /**
+     * @test
+     */
+    public function anInverseFriendshipIsRetrievedWhenFetchingTheProfile()
+    {
+        $this->actingAs($user = factory(User::class)->create(), 'api');
+        $anotherUser = factory(User::class)->create();
+
+        $friendRequest = Friend::create([
+            'friend_id' => $user->id,
+            'user_id' => $anotherUser->id,
+            'confirmed_at' => now()->subDay(),
+            'status' => true
+        ]);
+
+        $this->get('/api/users/'.$anotherUser->id)
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'attributes' => [
+                        'friendship' => [
+                            'data' => [
+                                'friend_request_id' => $friendRequest->id,
+                                'attributes' => [
+                                    'confirmed_at' => '1 day ago',
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]);
+    }
 }
