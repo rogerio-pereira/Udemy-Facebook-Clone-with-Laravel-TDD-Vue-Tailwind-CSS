@@ -14,5 +14,15 @@ class PostsTableSeeder extends Seeder
     {
         factory(Post::class)->create(['user_id' => 1, 'body' => 'Text only', 'image' => null]);
         factory(Post::class)->create(['user_id' => 1, 'body' => 'Image']);
+
+        //Create 5 posts, with content Post X, to the two users
+        for($i=0; $i<5; $i++) {
+            if($i%2 == 0)
+                $userId = 1;
+            else
+                $userId = 2;
+
+            factory(Post::class)->create(['user_id' => $userId, 'body' => 'Post '.$i]);
+        }
     }
 }

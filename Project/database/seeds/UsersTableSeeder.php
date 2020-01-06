@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Friend;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -23,5 +24,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'john@test.com',
             'password' => bcrypt('123456'),
         ]);
+
+        factory(Friend::class)->create();
     }
 }

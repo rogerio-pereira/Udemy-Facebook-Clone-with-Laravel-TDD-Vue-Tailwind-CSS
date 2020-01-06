@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Friend;
 use App\Post;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,10 +16,13 @@ class RetrievePostsTest extends TestCase
     /** @test */
     public function a_user_can_retrieve_posts()
     {
-        $this->withoutExceptionHandling();
+        //Users
         $this->actingAs($user = factory(User::class)->create(), 'api');
-
-        $posts = factory(Post::class, 2)->create(['user_id' => $user->id]);
+        $anotherUser = $user = factory(User::class)->create();
+        //Posts
+        $posts = factory(Post::class, 2)->create(['user_id' => $anotherUser->id]);
+        //Friendship
+        factory(Friend::class)->create();
 
         $response = $this->get('/api/posts');
 
