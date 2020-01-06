@@ -17,6 +17,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('auth-user', 'AuthUserController@show');
 
     Route::resource('/posts', 'PostController');
+    Route::resource('/posts/{post}/like', 'PostLikeController');
     Route::resource('/users', 'UserController');
     Route::resource('/users/{user}/posts', 'UserPostController');
     Route::resource('/friendRequest', 'FriendRequestController');
