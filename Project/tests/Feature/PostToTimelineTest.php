@@ -14,16 +14,10 @@ class PostToTimelineTest extends TestCase
     /** @test */
     public function AUserCanPostATextPost()
     {
-        $this->withoutExceptionHandling();
         $this->actingAs($user = factory(User::class)->create(), 'api');
 
         $response =  $this->post('/api/posts', [
-            'data' => [
-                'type' => 'post',
-                'attributes' => [
-                    'body' => 'Testing body',
-                ]
-            ]
+            'body' => 'Testing body',
         ]);
 
         $post = Post::first();
