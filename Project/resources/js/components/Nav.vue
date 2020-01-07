@@ -29,7 +29,7 @@
             </router-link>
 
             <router-link :to="'/users/' + authUser.data.user_id" class='px-6 h-full flex items-center border-b-2 border-white'>
-                <img src='https://www.midlandsderm.com/wp-content/uploads/2019/04/Rachel-R.-Person-760x760.jpg' class='w-8 h-8 object-cover rounded-full'>
+                <img :src='authUser.data.attributes.profile_image.data.attributes.path' class='w-8 h-8 object-cover rounded-full'>
             </router-link>
                 
             <router-link to='/' class='px-6 h-full flex items-center border-b-2 border-white'>

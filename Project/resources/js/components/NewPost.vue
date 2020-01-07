@@ -2,7 +2,7 @@
     <div class='bg-white rounded shadow w-2/3 p-4'>
         <div class='flex justify-between items-center'>
             <div class='w-8'>
-                <img src='https://www.midlandsderm.com/wp-content/uploads/2019/04/Rachel-R.-Person-760x760.jpg' class='w-8 h-8 object-cover rounded-full'>
+                <img :src='authUser.data.attributes.profile_image.data.attributes.path' class='w-8 h-8 object-cover rounded-full'>
             </div>
 
             <div class='flex-1 flex mx-4'>
@@ -29,11 +29,15 @@
 
 <script>
     import _ from 'lodash';
+    import {mapGetters} from 'vuex';
 
     export default {
         'name': 'NewPost',
 
         computed: {
+            ...mapGetters({
+                authUser: 'authUser',
+            }),
             postMessage: {
                 get() {
                     return this.$store.getters.postMessage;

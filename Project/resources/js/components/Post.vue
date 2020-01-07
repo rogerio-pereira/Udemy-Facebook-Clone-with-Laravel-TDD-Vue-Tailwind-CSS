@@ -3,7 +3,7 @@
         <div class='flex flex-col p-4'>
             <div class='flex items-center'>
                 <div class='w-8'>
-                    <img src='https://www.midlandsderm.com/wp-content/uploads/2019/04/Rachel-R.-Person-760x760.jpg' class='w-8 h-8 object-cover rounded-full'>
+                    <img :src='post.data.attributes.posted_by.data.attributes.profile_image.data.attributes.path' class='w-8 h-8 object-cover rounded-full'>
                 </div>
 
                 <div class='ml-6'>
@@ -65,7 +65,7 @@
 
             <div class='flex my-4 items-center' v-for="comment in post.data.attributes.comments.data">
                 <div class='w-8'>
-                    <img src='https://www.midlandsderm.com/wp-content/uploads/2019/04/Rachel-R.-Person-760x760.jpg' class='w-8 h-8 object-cover rounded-full'>
+                    <img :src='comment.data.attributes.commented_by.data.attributes.profile_image.data.attributes.path' class='w-8 h-8 object-cover rounded-full'>
                 </div>
 
                 <div class='ml-4 flex-1'>
