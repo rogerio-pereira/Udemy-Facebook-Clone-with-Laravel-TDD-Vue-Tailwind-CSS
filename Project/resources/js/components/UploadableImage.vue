@@ -35,7 +35,7 @@
                 return {
                     paramName: 'image',
                     url: '/api/userImages',
-                    accepted: 'image/*',
+                    acceptedFiles: 'image/*',
                     params: {
                         'width': this.imageWidth,
                         'height': this.imageHeight,
@@ -45,9 +45,7 @@
                         'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content,
                     },
                     success: (e, res) => {
-                        alert('uploaded');
                         this.uploadedImage = res;
-                        console.log(res);
                     },
                 };
             },

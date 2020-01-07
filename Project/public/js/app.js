@@ -2195,7 +2195,7 @@ __webpack_require__.r(__webpack_exports__);
       return {
         paramName: 'image',
         url: '/api/userImages',
-        accepted: 'image/*',
+        acceptedFiles: 'image/*',
         params: {
           'width': this.imageWidth,
           'height': this.imageHeight,
@@ -2205,9 +2205,7 @@ __webpack_require__.r(__webpack_exports__);
           'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content
         },
         success: function success(e, res) {
-          alert('uploaded');
           _this.uploadedImage = res;
-          console.log(res);
         }
       };
     },
@@ -2284,6 +2282,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -25006,7 +25005,6 @@ var render = function() {
                         userImage: _vm.user.data.attributes.profile_image,
                         classes:
                           "object-cover w-32 h-32 border-4 border-gray-200 rounded-full shadow-lg",
-                        ",": "",
                         alt: "user profile image"
                       }
                     })
