@@ -1,8 +1,9 @@
 <template>
     <div class=''>
         <img 
-            src='https://i.ytimg.com/vi/dXM6i5-sdVg/maxresdefault.jpg' 
-            class='object-cover w-full'
+            :src="imageObject.data.attributes.path"
+            :alt='alt'
+            :class='classes'
             ref='userImage'
         >
     </div>
@@ -15,12 +16,16 @@
         data: () => {
             return {
                 dropzone: null,
+                uploadedImage: null,
             }
         },
         props: [
             'imageWidth',
             'imageHeight',
             'location',
+            'userImage',
+            'classes',
+            'alt',
         ],
         mounted() {
             this.dropzone = new Dropzone(this.$refs.userImage, this.settings);
@@ -41,8 +46,13 @@
                     },
                     success: (e, res) => {
                         alert('uploaded');
+                        this.uploadedImage = res;
+                        console.log(res);
                     },
                 };
+            },
+            imageObject() {
+                return this.uploadedImage || this.userImage;
             }
         },
     }
