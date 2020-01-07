@@ -20,12 +20,12 @@
             Post
         },
         mounted(){
-            this.$store.dispatch('fetchNewsPosts');
+            this.$store.dispatch('fetchPosts');
         },
         computed: {
             ...mapGetters({
-                posts: 'newsPosts',
-                newsStatus: 'newsPostsStatus',
+                posts: 'posts',
+                newsStatus: 'postsStatus',
             })
         }
     }

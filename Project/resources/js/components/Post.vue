@@ -53,7 +53,7 @@
 
         <div v-if="comments" class='border-t border-gray-400 p-4 pt-2'>
             <div class='flex'>
-                <input type='text' name='comment' class='w-full pl-4 h-8 bg-gray-200 rounded-lg focus:outline-none' v-model='commentBody'/>
+                <input type='text' name='comment' class='w-full pl-4 h-8 bg-gray-200 rounded-lg focus:outline-none' v-model='commentBody' placeholder='Write your comment.' />
                 <button 
                     v-if="commentBody" 
                     class='bg-gray-200 ml-2 px-2 py-1 rounded-lg focus:outline-none' 
