@@ -26,7 +26,6 @@ class UserImagesTest extends TestCase
      */
     public function imagesCanBeUploaded()
     {
-        $this->withoutExceptionHandling();
         $this->actingAs($user = factory(User::class)->create(), 'api');
 
         $file = UploadedFile::fake()->image('user-image.jpg');
@@ -60,6 +59,52 @@ class UserImagesTest extends TestCase
             'links' => [
                 'self' => url('users/'.$user->id),
             ]
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function usersAreReturnedWithTheirImages()
+    {
+        $this->actingAs($user = factory(User::class)->create(), 'api');
+        $file = UploadedFile::fake()->image('user-image.jpg');
+        $this->post('/api/userImages', [
+            'image' => $file,
+            'width' => 850,
+            'height' => 300,
+            'location' => 'cover',
+        ])->assertStatus(201);
+        $this->post('/api/userImages', [
+            'image' => $file,
+            'width' => 850,
+            'height' => 300,
+            'location' => 'profile',
+        ])->assertStatus(201);
+
+        $response = $this->get('/api/users/'.$user->id);
+
+        $response->assertJson([
+            'data' => [
+                'type' => 'users',
+                'user_id' => $user->id,
+                'attributes' => [
+                    'cover_image' => [
+                        'data' => [
+                            'type' => 'user-images',
+                            'user_image_id' => 1,
+                            'attributes' => []
+                        ],
+                    ],
+                    'profile_image' => [
+                        'data' => [
+                            'type' => 'user-images',
+                            'user_image_id' => 2,
+                            'attributes' => []
+                        ],
+                    ],
+                ]
+            ],
         ]);
     }
 }
