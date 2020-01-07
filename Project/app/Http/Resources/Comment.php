@@ -22,7 +22,7 @@ class Comment extends JsonResource
                 'attributes' => [
                     'commented_by' => new ResourceUser($this->user),
                     'body' => $this->body,
-                    'comment_at' => $this->created_at->diffForHumans(),
+                    'commented_at' => $this->created_at->diffForHumans(),
                 ],
             ],
             'links' => [

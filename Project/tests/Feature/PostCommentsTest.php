@@ -47,7 +47,7 @@ class PostCommentsTest extends TestCase
                                 ]
                             ],
                             'body' => 'A great comment here.',
-                            'comment_at' => $comment->created_at->diffForHumans(),
+                            'commented_at' => $comment->created_at->diffForHumans(),
                         ],
                     ],
                     'links' => [
@@ -115,7 +115,7 @@ class PostCommentsTest extends TestCase
                                                         ]
                                                     ],
                                                     'body' => 'A great comment here.',
-                                                    'comment_at' => $comment->created_at->diffForHumans(),
+                                                    'commented_at' => $comment->created_at->diffForHumans(),
                                                 ],
                                             ],
                                             'links' => [

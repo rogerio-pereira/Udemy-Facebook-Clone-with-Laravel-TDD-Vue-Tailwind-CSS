@@ -2,6 +2,7 @@
 
 use App\Like;
 use App\Post;
+use App\Comment;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -27,5 +28,6 @@ class PostsTableSeeder extends Seeder
         }
 
         factory(Like::class)->create();
+        factory(Comment::class)->create();
     }
 }
