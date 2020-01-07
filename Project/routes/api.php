@@ -18,6 +18,7 @@ Route::middleware('auth:api')->group(function(){
 
     Route::resource('/posts', 'PostController');
     Route::resource('/posts/{post}/like', 'PostLikeController');
+    Route::resource('/posts/{post}/comment', 'PostCommentController');
     Route::resource('/users', 'UserController');
     Route::resource('/users/{user}/posts', 'UserPostController');
     Route::resource('/friendRequest', 'FriendRequestController');
