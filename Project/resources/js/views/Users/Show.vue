@@ -2,7 +2,7 @@
     <div class='flex flex-col items-center' v-if="status.user === 'success' && user">
         <div class='relative mb-8'>
             <div class='w-100 h-64 overflow-hidden z-10'>
-                <img src='https://i.ytimg.com/vi/dXM6i5-sdVg/maxresdefault.jpg' class='object-cover w-full'>
+                <UploadableImage imageWidth='1500' imageHeight='300' location='cover'/>
             </div>
 
             <div class='absolute flex items-center bottom-0 left-0 -mb-8 ml-20 z-20'>
@@ -43,12 +43,14 @@
 
 <script>
     import Post from '../../components/Post';
+    import UploadableImage from '../../components/UploadableImage';
     import {mapGetters} from 'vuex';
 
     export default {
         'name': 'Show',
         components: {
-            Post
+            Post,
+            UploadableImage
         },
         mounted(){
             this.$store.dispatch('fetchUser', this.$route.params.userId);
