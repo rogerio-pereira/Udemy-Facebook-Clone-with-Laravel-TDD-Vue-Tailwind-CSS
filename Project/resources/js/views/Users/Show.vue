@@ -3,8 +3,8 @@
         <div class='relative mb-8'>
             <div class='w-100 h-64 overflow-hidden z-10'>
                 <UploadableImage 
-                    imageWidth='1500' 
-                    imageHeight='300' 
+                    imageWidth='1200' 
+                    imageHeight='500' 
                     location='cover' 
                     :userImage='user.data.attributes.cover_image' 
                     classes='object-cover w-full'
@@ -15,8 +15,8 @@
             <div class='absolute flex items-center bottom-0 left-0 -mb-8 ml-20 z-20'>
                 <div class='w-32'>
                     <UploadableImage 
-                        imageWidth='1500' 
-                        imageHeight='300' 
+                        imageWidth='750' 
+                        imageHeight='750' 
                         location='profile' 
                         :userImage='user.data.attributes.profile_image' 
                         classes='object-cover w-32 h-32 border-4 border-gray-200 rounded-full shadow-lg'

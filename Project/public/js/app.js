@@ -24978,8 +24978,8 @@ var render = function() {
               [
                 _c("UploadableImage", {
                   attrs: {
-                    imageWidth: "1500",
-                    imageHeight: "300",
+                    imageWidth: "1200",
+                    imageHeight: "500",
                     location: "cover",
                     userImage: _vm.user.data.attributes.cover_image,
                     classes: "object-cover w-full",
@@ -25003,8 +25003,8 @@ var render = function() {
                   [
                     _c("UploadableImage", {
                       attrs: {
-                        imageWidth: "1500",
-                        imageHeight: "300",
+                        imageWidth: "750",
+                        imageHeight: "750",
                         location: "profile",
                         userImage: _vm.user.data.attributes.profile_image,
                         classes:
