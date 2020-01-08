@@ -76,6 +76,7 @@
                     autoProcessQueue: false,
                     previewsContainer: '.dropzone-previews',
                     previewTemplate: document.querySelector('#dz-template').innerHTML,
+                    maxFiles: 1,
                     params: {
                         'width': 1000,
                         'height': 1000,
@@ -90,6 +91,10 @@
                         this.dropzone.removeAllFiles();
 
                         this.$store.commit('pushPost', response);
+                    },
+                    maxfilesexceeded: file => {
+                        this.dropzone.removeAllFiles();
+                        this.dropzone.addFile(file);
                     }
                 };
             }
