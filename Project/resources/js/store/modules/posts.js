@@ -49,6 +49,7 @@ const actions = {
         axios.post('/api/posts', {body: state.postMessage})
             .then(response => {
                 commit('pushPost', response.data);
+                commit('setPostsStatus', 'success');
                 commit('updateMessage', '');
             })
             .catch(error => {
